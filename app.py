@@ -9,6 +9,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from typing import Any
 
+import os
 import requests
 import urllib3
 from Crypto.Cipher import AES, PKCS1_v1_5
@@ -309,5 +310,8 @@ def status():
 
 if __name__ == '__main__':
     print("邀请刷量工具 Web 服务启动中...")
-    print("访问地址: http://127.0.0.1:5000")
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    port = int(os.getenv("PORT", 5000))
+    print(f"运行端口: {port}")
+    
+    from waitress import serve
+    serve(app, host='0.0.0.0', port=port)
