@@ -1,4 +1,5 @@
-flask
+flask==3.0.3
 pycryptodome
 requests
 urllib3
+waitress
